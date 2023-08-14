@@ -15,7 +15,7 @@ This is the client side of the Cohort Tools project. It is a React app that uses
 - User can view information about a single student
 - User can edit information of a single student
 - User can delete an existing student
-
+npm
 
 ## Pages
 
