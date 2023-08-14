@@ -5,6 +5,7 @@ const PORT = 5005;
 const cohorts = require("./cohorts.json");
 const students = require("./students.json")
 
+
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
 // ...
