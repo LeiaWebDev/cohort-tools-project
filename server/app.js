@@ -1,11 +1,12 @@
 require("./config/db");
+// require("dotenv").config()
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
-const cohorts = require("./cohorts.json");
-const students = require("./students.json");
+// const cohorts = require("./cohorts.json");
+// const students = require("./students.json");
 
 // const Schema = mongoose.Schema;
 
@@ -34,12 +35,15 @@ app.use(cookieParser());
 app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
-app.get("/api/cohorts", (req, res) => {
-  res.json(cohorts);
-});
-app.get("/api/students", (req, res) => {
-  res.json(students);
-});
+// app.get("/api/cohorts", (req, res) => {
+//   res.json(cohorts);
+// });
+// app.get("/api/students", (req, res) => {
+//   res.json(students);
+// });
+
+// main handler
+app.use("/api", require("./routes/index.routes"))
 
 // START SERVER
 app.listen(PORT, () => {
