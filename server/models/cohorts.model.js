@@ -1,6 +1,7 @@
-const {Schema, model, SchemaTypes} = require("mongoose")
+const { Schema, model, SchemaTypes } = require("mongoose");
 
-const cohortSchema = new Schema({
+const cohortsSchema = new Schema(
+  {
     inProgress: { type: Boolean, default: false },
     cohortSlug: { type: String, required: true, unique: true },
     cohortName: { type: String, required: true },
@@ -22,18 +23,19 @@ const cohortSchema = new Schema({
         "Remote",
       ],
     },
-    startDate: {
-      type: Date,
-      default: Date.now,
-    },
-    endDate: {
-      type: Date,
-    },
+    startDate: { type: Date, default: Date.now }, // Date.now = a function to execute = a callback
+    endDate: { type: Date },
     programManager: { type: String, required: true },
     leadTeacher: { type: String, required: true },
     totalHours: { type: Number, default: 360 },
-  });
+  },
 
-  const Cohort = model("Cohort", cohortSchema)
+  {
+    timestamps: true,
+  }
+);
 
-  module.exports = Cohort
+const Cohort = model("Cohort", cohortsSchema);
+// const Schema = mongoose.Schema;
+
+module.exports = Cohort;

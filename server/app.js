@@ -7,9 +7,7 @@ const PORT = 5005;
 const cohorts = require("./cohorts.json");
 const students = require("./students.json");
 
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const Model = mongoose.Model;
+// const Schema = mongoose.Schema;
 
 // STATIC DATA
 // Devs Team - Import the provided files with JSON data of students and cohorts here:
@@ -18,6 +16,7 @@ const Model = mongoose.Model;
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
 const app = express();
 
+//Schemas in models.js
 
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
