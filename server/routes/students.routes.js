@@ -37,7 +37,7 @@ router.get('/students/cohort/:cohortId', async (req, res, next)=>{
 // route to get one student by Id
 router.get('/students/:studentId', async (req, res, next)=>{
     try {
-        const oneStudent = await Student.findById(req.params, studentId)
+        const oneStudent = await Student.findById(req.params.studentId)
         res.json(oneStudent)
 
     } catch (error) {
