@@ -35,15 +35,25 @@ app.use(cookieParser());
 app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
+
+//Main route handler
+
+app.use("/api", require("./routes/index.routes"));
+
+//404
+
+app.use((req, res, next) => {
+  res.status(404).json({
+    availableEndPoints: ["/api/students", "/api/cohorts", "/"],
+  });
+});
+
 // app.get("/api/cohorts", (req, res) => {
 //   res.json(cohorts);
 // });
 // app.get("/api/students", (req, res) => {
 //   res.json(students);
 // });
-
-// main handler
-app.use("/api", require("./routes/index.routes"))
 
 // START SERVER
 app.listen(PORT, () => {
