@@ -42,7 +42,7 @@ router.post("/cohorts", (req, res) => {
 });
 // GET /api/cohorts - Retrieves all of the cohorts in the database collection
 
-router.get("/cohorts", (req, res) => {
+router.get("/", (req, res) => {
   Cohort.find()
     .then((allCohorts) => {
       console.log(allCohorts);
@@ -56,7 +56,7 @@ router.get("/cohorts", (req, res) => {
 
 //GET /api/cohorts/:cohortId - Retrieves a specific cohort by id
 
-router.get("/cohorts/:cohortId", (req, res) => {
+router.get("/:cohortId", (req, res) => {
     const cohortId = req.params.id;
   Cohort.findById(cohortId)
     .then((oneCohort) => {
@@ -72,7 +72,7 @@ router.get("/cohorts/:cohortId", (req, res) => {
 //PUT /api/cohorts/:cohortId - Updates a specific cohort by id
 /** By default, findOneAndUpdate() returns the document as it was before update was applied. If you set new: true, findOneAndUpdate() will instead give you the object after update was applied */
 
-router.put("/cohorts/:cohortId", (req, res) => {
+router.put("/:cohortId", (req, res) => {
     const cohortId = req.params.id;
   Cohort.findByIdAndUpdate(cohortId, req.body, { new: true })
     .then((updatedCohort) => {
@@ -87,7 +87,7 @@ router.put("/cohorts/:cohortId", (req, res) => {
 
 //DELETE /api/cohorts/:cohortId - Deletes a specific cohort by id
 
-router.delete("/cohorts/:cohortId", (req, res) => {
+router.delete("/:cohortId", (req, res) => {
     
   Cohort.findByIdAndDelete(req.params.id)
     .then((res) => {
