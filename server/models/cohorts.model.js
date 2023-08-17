@@ -25,6 +25,7 @@ const cohortsSchema = new Schema(
         "Remote",
       ],
     },
+
     startDate: { type: Date, default: Date.now }, // Date.now = a function to execute = a callback
     endDate: { type: Date },
     programManager: { type: String, required: true },
