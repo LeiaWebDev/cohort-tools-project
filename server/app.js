@@ -25,7 +25,7 @@ app.use(cors({ origin: ["http://localhost:5005"] }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // ROUTES - https://expressjs.com/en/starter/basic-routing.html
