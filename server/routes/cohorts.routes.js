@@ -92,15 +92,15 @@ router.put("/:cohortId", (req, res, next) => {
 
 //DELETE /api/cohorts/:cohortId - Deletes a specific cohort by id
 
-router.delete("/:cohortId", (req, res) => {
-  Cohort.findByIdAndDelete(req.params.cohortId)
-    .then((res) => {
+router.delete("/:cohortId", (req, res, next) => {
+  const cohortId = req.params.cohortId;
+  Cohort.findByIdAndDelete(cohortId)
+    .then((cohortId) => {
       console.log("Cohort successfully deleted");
-      res.status(200).json(); //Send back only status code 204 indicating that resource is deleted
+      res.status(200).json(); //Send back only status code 200 indicating that resource is deleted
     })
     .catch((error) => {
-      console.error("Error while deleting cohort", error);
-      res.status(500).json({ error: "Deleting cohort failed" });
+      next(error);
     });
 });
 
