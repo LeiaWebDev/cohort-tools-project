@@ -1,11 +1,12 @@
 require("./config/db");
+// require("dotenv").config()
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const PORT = 5005;
 // const cohorts = require("./cohorts.json");
-// // const students = require("./students.json");
+// const students = require("./students.json");
 
 // const Schema = mongoose.Schema;
 
