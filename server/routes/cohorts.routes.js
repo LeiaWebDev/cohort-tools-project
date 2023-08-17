@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Cohort = require("../models/cohorts.model");
 
 //POST /api/cohorts - Creates a new cohort
-router.post("/", (req, res) => {
+router.post("/", (req, res, next) => {
   const {
     inProgress,
     cohortSlug,
@@ -36,21 +36,23 @@ console.log(req.body)
       res.status(200).json(createdCohort);
     })
     .catch((error) => {
-      console.error("Error while creating cohort", error);
-      res.status(500).json({ error: "Failed to create the cohort" });
+      next(error)
+      // console.error("Error while creating cohort", error);
+      // res.status(500).json({ error: "Failed to create the cohort" });
     });
 });
 // GET /api/cohorts - Retrieves all of the cohorts in the database collection
 
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Cohort.find()
     .then((allCohorts) => {
       console.log(allCohorts);
       res.status(200).json(allCohorts);
     })
     .catch((error) => {
-      console.error("Error while retrieving cohorts", error);
-      res.status(500).json({ error: "Sorry, failed to retrieve cohorts" });
+      next(error)
+      // console.error("Error while retrieving cohorts", error);
+      // res.status(500).json({ error: "Sorry, failed to retrieve cohorts" });
     });
 });
 
@@ -65,15 +67,16 @@ router.get("/:cohortId", (req, res) => {
       res.status(200).json(oneCohort);
     })
     .catch((error) => {
-      console.error("Error while retrieving cohorts", error);
-      res.status(500).json({ error: "Sorry, failed to retrieve this cohort" });
+      next(error)
+      // console.error("Error while retrieving cohorts", error);
+      // res.status(500).json({ error: "Sorry, failed to retrieve this cohort" });
     });
 });
 
 //PUT /api/cohorts/:cohortId - Updates a specific cohort by id
 /** By default, findOneAndUpdate() returns the document as it was before update was applied. If you set new: true, findOneAndUpdate() will instead give you the object after update was applied */
 
-router.put("/:cohortId", (req, res) => {
+router.put("/:cohortId", (req, res, next) => {
     const cohortId = req.params.cohortId;
   Cohort.findByIdAndUpdate(cohortId, req.body, { new: true })
     .then((updatedCohort) => {
@@ -81,8 +84,9 @@ router.put("/:cohortId", (req, res) => {
       res.status(200).json(updatedCohort);
     })
     .catch((error) => {
-      console.error("Error while updating the cohort", error);
-      res.status(500).json({ error: "Failed to update the cohort" });
+      next(error)
+      // console.error("Error while updating the cohort", error);
+      // res.status(500).json({ error: "Failed to update the cohort" });
     });
 });
 
