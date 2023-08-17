@@ -29,7 +29,7 @@ router.post("/", (req, res, next) => {
     leadTeacher,
     totalHours,
   };
-
+console.log(req.body)
   Cohort.create(cohortToCreate)
     .then((createdCohort) => {
       console.log(createdCohort);
@@ -61,6 +61,7 @@ router.get("/", (req, res, next) => {
 router.get("/:cohortId", (req, res) => {
     const cohortId = req.params.cohortId;
   Cohort.findById(cohortId)
+  .populate("cohort")
     .then((oneCohort) => {
       console.log(oneCohort);
       res.status(200).json(oneCohort);
