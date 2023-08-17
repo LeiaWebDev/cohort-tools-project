@@ -28,9 +28,15 @@ router.get('/cohort/:cohortId', async (req, res, next)=>{
         // const studentsOfOneCohort = await Cohort.findById(req.params.cohortId)
         // .populate("students")
         // res.json(studentsOfOneCohort.students)
-        const studentsOfOneCohort = await Student.findById(req.params.studentId)
 
-        // .populate("cohort")
+        // correct code
+        // const studentsOfOneCohort = await Student.find({cohort: req.params.cohortId }, {lastName: 1})
+        const studentsOfOneCohort = await Student.find({cohort: req.params.cohortId })
+        // .populate("cohort", "leadTeacher campus -_id")
+        // .sort({lastName: -1})
+        // .limit(2)
+        .populate("cohort", {leadTeacher: 1, _id:0})
+        
         
         res.json(studentsOfOneCohort)
 
