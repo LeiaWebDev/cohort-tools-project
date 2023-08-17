@@ -57,7 +57,7 @@ router.get("/", (req, res) => {
 //GET /api/cohorts/:cohortId - Retrieves a specific cohort by id
 
 router.get("/:cohortId", (req, res) => {
-    const cohortId = req.params.id;
+    const cohortId = req.params.cohortId;
   Cohort.findById(cohortId)
     .then((oneCohort) => {
       console.log(oneCohort);
@@ -73,7 +73,7 @@ router.get("/:cohortId", (req, res) => {
 /** By default, findOneAndUpdate() returns the document as it was before update was applied. If you set new: true, findOneAndUpdate() will instead give you the object after update was applied */
 
 router.put("/:cohortId", (req, res) => {
-    const cohortId = req.params.id;
+    const cohortId = req.params.cohortId;
   Cohort.findByIdAndUpdate(cohortId, req.body, { new: true })
     .then((updatedCohort) => {
       console.log("Updated cohort", updatedCohort);
@@ -89,7 +89,7 @@ router.put("/:cohortId", (req, res) => {
 
 router.delete("/:cohortId", (req, res) => {
     
-  Cohort.findByIdAndDelete(req.params.id)
+  Cohort.findByIdAndDelete(req.params.cohortId)
     .then((res) => {
       console.log("Cohort successfully deleted");
       res.status(200).json(); //Send back only status code 204 indicating that resource is deleted
