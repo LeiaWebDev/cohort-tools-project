@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Cohort = require("../models/cohorts.model");
 
 //POST /api/cohorts - Creates a new cohort
-router.post("/cohorts", (req, res) => {
+router.post("/", (req, res) => {
   const {
     inProgress,
     cohortSlug,
@@ -33,7 +33,7 @@ router.post("/cohorts", (req, res) => {
   Cohort.create(cohortToCreate)
     .then((createdCohort) => {
       console.log(createdCohort);
-      res.status(200).json(cohortToCreate);
+      res.status(200).json(createdCohort);
     })
     .catch((error) => {
       console.error("Error while creating cohort", error);
