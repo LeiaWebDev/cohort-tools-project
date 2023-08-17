@@ -1,4 +1,6 @@
+const logger = require("morgan");
 const { Schema, model, SchemaTypes } = require("mongoose");
+const mongoose = require("mongoose");
 
 const studentsSchema = new Schema(
   {
@@ -25,8 +27,8 @@ const studentsSchema = new Schema(
     },
     background: { type: String, default: "" },
     image: { type: String, default: "https://i.imgur.com/r8bo8u7.png" },
-    cohort: { type: Schema.Types.ObjectId, ref: "" },
-   
+    cohort: //{ type: Schema.Types.ObjectId, ref: "" },
+    { type: mongoose.SchemaTypes.ObjectId, ref: "Cohort"},
     projects: [String],
   },
   {
