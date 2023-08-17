@@ -29,14 +29,14 @@ router.post("/", (req, res, next) => {
     leadTeacher,
     totalHours,
   };
-console.log(req.body)
+  console.log(req.body);
   Cohort.create(cohortToCreate)
     .then((createdCohort) => {
       console.log(createdCohort);
       res.status(200).json(createdCohort);
     })
     .catch((error) => {
-      next(error)
+      next(error);
       // console.error("Error while creating cohort", error);
       // res.status(500).json({ error: "Failed to create the cohort" });
     });
@@ -50,7 +50,7 @@ router.get("/", (req, res, next) => {
       res.status(200).json(allCohorts);
     })
     .catch((error) => {
-      next(error)
+      next(error);
       // console.error("Error while retrieving cohorts", error);
       // res.status(500).json({ error: "Sorry, failed to retrieve cohorts" });
     });
@@ -59,15 +59,15 @@ router.get("/", (req, res, next) => {
 //GET /api/cohorts/:cohortId - Retrieves a specific cohort by id
 
 router.get("/:cohortId", (req, res, next) => {
-    const cohortId = req.params.cohortId;
+  const cohortId = req.params.cohortId;
   Cohort.findById(cohortId)
-  .populate("cohort")
+
     .then((oneCohort) => {
       console.log(oneCohort);
       res.status(200).json(oneCohort);
     })
     .catch((error) => {
-      next(error)
+      next(error);
       // console.error("Error while retrieving cohorts", error);
       // res.status(500).json({ error: "Sorry, failed to retrieve this cohort" });
     });
@@ -77,14 +77,14 @@ router.get("/:cohortId", (req, res, next) => {
 /** By default, findOneAndUpdate() returns the document as it was before update was applied. If you set new: true, findOneAndUpdate() will instead give you the object after update was applied */
 
 router.put("/:cohortId", (req, res, next) => {
-    const cohortId = req.params.cohortId;
+  const cohortId = req.params.cohortId;
   Cohort.findByIdAndUpdate(cohortId, req.body, { new: true })
     .then((updatedCohort) => {
       console.log("Updated cohort", updatedCohort);
       res.status(200).json(updatedCohort);
     })
     .catch((error) => {
-      next(error)
+      next(error);
       // console.error("Error while updating the cohort", error);
       // res.status(500).json({ error: "Failed to update the cohort" });
     });
@@ -93,7 +93,6 @@ router.put("/:cohortId", (req, res, next) => {
 //DELETE /api/cohorts/:cohortId - Deletes a specific cohort by id
 
 router.delete("/:cohortId", (req, res) => {
-    
   Cohort.findByIdAndDelete(req.params.cohortId)
     .then((res) => {
       console.log("Cohort successfully deleted");
