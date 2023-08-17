@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
     leadTeacher,
     totalHours,
   };
-
+console.log(req.body)
   Cohort.create(cohortToCreate)
     .then((createdCohort) => {
       console.log(createdCohort);
