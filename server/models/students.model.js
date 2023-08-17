@@ -15,7 +15,7 @@ const studentsSchema = new Schema(
         "English",
         "Spanish",
         "French",
-        "German",
+        "German", 
         "Portuguese",
         "Dutch",
         "Other",
