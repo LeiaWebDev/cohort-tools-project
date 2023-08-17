@@ -58,7 +58,7 @@ router.get("/", (req, res, next) => {
 
 //GET /api/cohorts/:cohortId - Retrieves a specific cohort by id
 
-router.get("/:cohortId", (req, res) => {
+router.get("/:cohortId", (req, res, next) => {
     const cohortId = req.params.cohortId;
   Cohort.findById(cohortId)
   .populate("cohort")
