@@ -12,6 +12,7 @@ router.get('/', async (req, res, next)=>{
     console.log("Received a request for /students");
     try {
         const allStudents = await Student.find()
+      //  .populate("cohort")
         res.json(allStudents)
 
     } catch (error) {
@@ -40,6 +41,7 @@ router.get('/cohort/:cohortId', async (req, res, next)=>{
 router.get('/:studentId', async (req, res, next)=>{
     try {
         const oneStudent = await Student.findById(req.params.studentId)
+        .populate("cohort")
         res.json(oneStudent)
 
     } catch (error) {

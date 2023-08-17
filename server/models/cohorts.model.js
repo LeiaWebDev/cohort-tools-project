@@ -1,4 +1,6 @@
+const logger = require("morgan");
 const { Schema, model, SchemaTypes } = require("mongoose");
+const mongoose = require("mongoose");
 
 const cohortsSchema = new Schema(
   {
@@ -28,6 +30,8 @@ const cohortsSchema = new Schema(
     programManager: { type: String, required: true },
     leadTeacher: { type: String, required: true },
     totalHours: { type: Number, default: 360 },
+   /* students: //{ type: Schema.Types.ObjectId, ref: "" },
+    { type: mongoose.SchemaTypes.ObjectId, ref: "Student"},*/
   },
 
   {
