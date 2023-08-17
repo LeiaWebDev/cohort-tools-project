@@ -49,13 +49,13 @@ router.get('/:studentId', async (req, res, next)=>{
 // route to create a student with a specified cohortId
 router.post('/', async(req, res, next)=>{
     try {
-        const {firstName, lastName, program, cohort} = req.body
+        const {firstName, lastName, email, phone, linkedinUrl, languages, program, background, image, cohort, projects} = req.body
         let studentToCreate = req.body
         if(!firstName || !lastName || !program || !cohort){
             return res.status(404).json({message: "Fill all fields to create a student"})
         }
         
-        const createdStudent = await Student.create({ firstName, lastName, program, cohort })
+        const createdStudent = await Student.create({ firstName, lastName, email, phone, linkedinUrl, languages, program, background, image, cohort, projects})
         res.status(201).json(createdStudent)
 
 	} catch (error) {
@@ -67,9 +67,9 @@ router.post('/', async(req, res, next)=>{
 // route to update a specified student by Id
 router.put("/:studentId", async(req, res, next)=>{
     try {
-        const {firstName, lastName, program, cohort} = req.body 
+        const {firstName, lastName, email, phone, linkedinUrl, languages, program, background, image, cohort, projects} = req.body 
         const id = req.params.studentId
-        const studentToUpdate = {firstName, lastName, program, cohort}
+        const studentToUpdate = {firstName, lastName, email, phone, linkedinUrl, languages, program, background, image, cohort, projects}
         const newStudent = await Student.findByIdAndUpdate(id, studentToUpdate, {new: true})
         res.json(newStudent)
     } catch (error) {
