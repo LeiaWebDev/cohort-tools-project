@@ -43,8 +43,9 @@ router.get('/:studentId', async (req, res, next)=>{
         res.json(oneStudent)
 
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "Internal server error" });
+        // console.log(error)
+        next(error);
+        // res.status(500).json({ message: "Internal server error" });
     }
 })
 
