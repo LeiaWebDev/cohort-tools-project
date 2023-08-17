@@ -59,6 +59,7 @@ router.get("/", (req, res) => {
 router.get("/:cohortId", (req, res) => {
     const cohortId = req.params.cohortId;
   Cohort.findById(cohortId)
+  .populate("cohort")
     .then((oneCohort) => {
       console.log(oneCohort);
       res.status(200).json(oneCohort);
