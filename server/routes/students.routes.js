@@ -15,8 +15,7 @@ router.get('/', async (req, res, next)=>{
         res.json(allStudents)
 
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "Internal server error" });
+        next(error);
         
     }
 })
@@ -24,13 +23,16 @@ router.get('/', async (req, res, next)=>{
 // route to get all students of a specific cohort
 router.get('/cohort/:cohortId', async (req, res, next)=>{
     try {
-        const studentsOfOneCohort = await Cohort.findById(req.params.cohortId)
-        .populate("students")
-        res.json(studentsOfOneCohort.students)
+        // const studentsOfOneCohort = await Cohort.findById(req.params.cohortId)
+        // .populate("students")
+        // res.json(studentsOfOneCohort.students)
+        const studentsOfOneCohort = await Student.findById(req.params.studentId)
+        .populate("cohort")
+        res.json(studentsOfOneCohort)
+
 
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "Internal server error" });
+        next(error);
     }
 })
 
@@ -61,8 +63,7 @@ router.post('/', async(req, res, next)=>{
         res.status(201).json(createdStudent)
 
 	} catch (error) {
-		console.log(error)
-        res.status(500).json({ message: "Internal server error" });
+		next(error);
 	}
 })
 
@@ -75,8 +76,7 @@ router.put("/:studentId", async(req, res, next)=>{
         const newStudent = await Student.findByIdAndUpdate(id, studentToUpdate, {new: true})
         res.json(newStudent)
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "Internal server error" });
+        next(error);
         
     }
 })
@@ -89,8 +89,7 @@ router.delete("/:studentId", async(req, res, next)=>{
         res.json({message : `Student ${id} was deleted`})
 
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: "Internal server error" });
+        next(error);
     }
 
 })
