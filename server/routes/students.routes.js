@@ -57,9 +57,9 @@ router.post('/', async(req, res, next)=>{
         const {firstName, lastName, email, phone, linkedinUrl, languages, program, background, image, cohort, projects} = req.body
         let studentToCreate = req.body
         console.log(req.body)
-        if(!firstName || !lastName || !program || !cohort){
-            return res.status(404).json({message: "Fill all fields to create a student"})
-        }
+        // if(!firstName || !lastName || !program || !cohort){
+        //     return res.status(400).json({message: "Fill all fields to create a student"})
+        // }
         
         const createdStudent = await Student.create({ firstName, lastName, email, phone, linkedinUrl, languages, program, background, image, cohort, projects})
         res.status(201).json(createdStudent)
