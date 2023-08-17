@@ -22,7 +22,7 @@ const app = express();
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
 // ...
-app.use(cors({ origin: ["http://localhost:5005"] }));
+app.use(cors({ origin: ["http://localhost:5173"] }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static("public"));
@@ -36,6 +36,17 @@ app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
 
+const Student = require("./models/students.model");
+
+app.use(async (req, res, next) => {
+  try {
+    const allStudents = await Student.find();
+    console.log(allStudents);
+    next();
+  } catch (error) {
+    console.log(error);
+  }
+});
 //Main route handler
 
 app.use("/api", require("./routes/index.routes"));
