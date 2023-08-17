@@ -8,7 +8,7 @@ const Student = require("../models/students.model") // I need to access my colle
 // /api/students
 
 // route to get all the students
-router.get('/students', async (req, res, next)=>{
+router.get('/', async (req, res, next)=>{
     console.log("Received a request for /students");
     try {
         const allStudents = await Student.find()
@@ -22,7 +22,7 @@ router.get('/students', async (req, res, next)=>{
 })
 
 // route to get all students of a specific cohort
-router.get('/students/cohort/:cohortId', async (req, res, next)=>{
+router.get('/cohort/:cohortId', async (req, res, next)=>{
     try {
         const studentsOfOneCohort = await Cohort.findById(req.params.cohortId)
         .populate("students")
@@ -35,7 +35,7 @@ router.get('/students/cohort/:cohortId', async (req, res, next)=>{
 })
 
 // route to get one student by Id
-router.get('/students/:studentId', async (req, res, next)=>{
+router.get('/:studentId', async (req, res, next)=>{
     try {
         const oneStudent = await Student.findById(req.params.studentId)
         res.json(oneStudent)
@@ -47,7 +47,7 @@ router.get('/students/:studentId', async (req, res, next)=>{
 })
 
 // route to create a student with a specified cohortId
-router.post('/students', async(req, res, next)=>{
+router.post('/', async(req, res, next)=>{
     try {
         const {firstName, lastName, program, cohort} = req.body
         let studentToCreate = req.body
@@ -65,7 +65,7 @@ router.post('/students', async(req, res, next)=>{
 })
 
 // route to update a specified student by Id
-router.put("/students/:studentId", async(req, res, next)=>{
+router.put("/:studentId", async(req, res, next)=>{
     try {
         const {firstName, lastName, program, cohort} = req.body 
         const id = req.params.studentId
@@ -80,7 +80,7 @@ router.put("/students/:studentId", async(req, res, next)=>{
 })
 
 // route to delete a specific student by Id
-router.delete("/students/:studentId", async(req, res, next)=>{
+router.delete("/:studentId", async(req, res, next)=>{
     const id = req.params.studentId
     try {
         await Student.findByIdAndDelete(id)
