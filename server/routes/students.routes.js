@@ -23,12 +23,15 @@ router.get('/', async (req, res, next)=>{
 
 // route to get all students of a specific cohort
 router.get('/cohort/:cohortId', async (req, res, next)=>{
+    console.log("122")
     try {
         // const studentsOfOneCohort = await Cohort.findById(req.params.cohortId)
         // .populate("students")
         // res.json(studentsOfOneCohort.students)
         const studentsOfOneCohort = await Student.findById(req.params.studentId)
-        .populate("cohort")
+
+        // .populate("cohort")
+        
         res.json(studentsOfOneCohort)
 
 
@@ -41,7 +44,7 @@ router.get('/cohort/:cohortId', async (req, res, next)=>{
 router.get('/:studentId', async (req, res, next)=>{
     try {
         const oneStudent = await Student.findById(req.params.studentId)
-        .populate("cohort")
+        // .populate("cohort")
         res.json(oneStudent)
 
     } catch (error) {
